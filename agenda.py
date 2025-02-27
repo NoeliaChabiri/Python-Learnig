@@ -1,77 +1,76 @@
-def crearContacto(dic):
-    # Pedir nombre y convertirlo a mayúsculas
-    nombre = input("Ingrese el nombre completo: ").upper()
+def createContact(dic):
+    # Ask for name and convert it to uppercase
+    name = input("Enter the full name: ").upper()
 
-    # Pedir número de móvil
-    movil = input("Ingrese el número del móvil: ")
+    # Ask for mobile number
+    mobile = input("Enter the mobile number: ")
 
-    # Guardar en el diccionario
-    dic[nombre] = movil
-    print(f"Contacto {nombre} agregado con éxito.")
+    # Save in the dictionary
+    dic[name] = mobile
+    print(f"Contact {name} added successfully.")
 
+def modifyContact(dic):
+    # Ask for the name of the contact to modify
+    name = input("Enter the full name of the contact you want to modify: ").upper()
 
-def modificarContacto(dic):
-    # Pedir nombre del contacto a modificar
-    nombre = input("Ingrese el nombre completo del contacto que desea modificar: ").upper()
+    # Check if the contact exists
+    if name in dic:
+        # Ask for the new name
+        name2 = input("Enter the new name: ").upper()
+        # Ask for the new mobile number
+        mobile = input("Enter the new mobile number: ")
 
-    # Verificar si el contacto existe
-    if nombre in dic:
-        # Pedir el nuevo nombre
-        nombre2 = input("Ingrese el nuevo nombre: ").upper()
-        # Pedir el nuevo número de móvil
-        movil = input("Ingrese el nuevo número del móvil: ")
-
-        # Modificar el diccionario
-        dic[nombre2] = dic.pop(nombre)  # Cambiar la clave de 'nombre' a 'nombre2'
-        dic[nombre2] = movil  # Actualizar el móvil
-        print(f"Contacto de {nombre} actualizado con éxito.")
+        # Modify the dictionary
+        dic[name2] = dic.pop(name)  # Change the key from 'name' to 'name2'
+        dic[name2] = mobile  # Update the mobile number
+        print(f"Contact {name} updated successfully.")
     else:
-        print(f"No se encontró el contacto con el nombre {nombre}.")
+        print(f"No contact found with the name {name}.")
 
-def eliminarContacto(dic):
-    # Pedir nombre del contacto a eliminar
-    nombre = input("Ingrese el nombre completo del contacto que desea eliminar: ").upper()
+def deleteContact(dic):
+    # Ask for the name of the contact to delete
+    name = input("Enter the full name of the contact you want to delete: ").upper()
 
-    # Verificar si el contacto existe
-    if nombre in dic:
-        del dic[nombre]  # Eliminar el contacto por su nombre
-        print(f"Contacto de {nombre} eliminado con éxito.")
+    # Check if the contact exists
+    if name in dic:
+        del dic[name]  # Delete the contact by its name
+        print(f"Contact {name} deleted successfully.")
     else:
-        print(f"No se encontró el contacto con el nombre {nombre}.")
+        print(f"No contact found with the name {name}.")
 
-def verAgenda(dic):
-    # Verificar si la agenda está vacía
+def viewAgenda(dic):
+    # Check if the agenda is empty
     if not dic:
-        print("La agenda aún no tiene contactos archivados.")
+        print("The agenda does not have any saved contacts yet.")
     else:
-        print("Agenda de contactos:")
-        for nombre, movil in dic.items():
-            print(f"{nombre}: {movil}")
+        print("Contact Agenda:")
+        for name, mobile in dic.items():
+            print(f"{name}: {mobile}")
 
-# Diccionario de contactos
-contactos = {}
+# Contact dictionary
+contacts = {}
 
-# Bucle principal
+# Main loop
 while True:
-    print("\nMenú:")
-    print("1 - Agregar Contacto")
-    print("2 - Modificar Contacto")
-    print("3 - Eliminar Contacto")
-    print("4 - Ver Agenda")
-    print("0 - Salir")
+    print("\nMenu:")
+    print("1 - Add Contact")
+    print("2 - Modify Contact")
+    print("3 - Delete Contact")
+    print("4 - View Agenda")
+    print("0 - Exit")
 
-    opcion = input("Seleccione una opción: ")
+    option = input("Select an option: ")
 
-    if opcion == '1':
-        crearContacto(contactos)
-    elif opcion == '2':
-        modificarContacto(contactos)
-    elif opcion == '3':
-        eliminarContacto(contactos)
-    elif opcion == '4':
-        verAgenda(contactos)
-    elif opcion == '0':
-        print("Ha salido del programa.")
+    if option == '1':
+        createContact(contacts)
+    elif option == '2':
+        modifyContact(contacts)
+    elif option == '3':
+        deleteContact(contacts)
+    elif option == '4':
+        viewAgenda(contacts)
+    elif option == '0':
+        print("You have exited the program.")
         break
     else:
-        print("Opción incorrecta. Intente de nuevo.")
+        print("Incorrect option. Try again.")
