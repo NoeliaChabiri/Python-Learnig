@@ -1,64 +1,64 @@
-#Función para limpiar pantalla a medida que se entra en opciones
+# Function to clear the screen as options are selected
 from datetime import datetime, timedelta
 import os
 import time
 
-def limpiarPantalla():
-    """Limpia la pantalla independientemente del sistema operativo."""
-    # Usamos os.name para detectar el sistema operativo
+def clearScreen():
+    """Clears the screen regardless of the operating system."""
+    # Use os.name to detect the operating system
     if os.name == 'nt':  # Windows
         os.system('cls')
     else:  # Linux, macOS, etc.
         os.system('clear')
 
-#Menu
+# Menu
 def main():
     
-    #modificar dependiendo la necesidad y la cantidad de opciones 
-    control = 0  # Variable para controlar el flujo de los menús
+    # Modify depending on the need and the number of options
+    control = 0  # Variable to control the flow of menus
     
     while control != 3:
 
-        limpiarPantalla()  # Llamada a la función limpiarPantalla
-        print("1- Socios\n2- Alquileres y Devoluciones\n3- Salir")
+        clearScreen()  # Call the clearScreen function
+        print("1- Members\n2- Rentals and Returns\n3- Exit")
 
-        # Menú principal
-        control = int(input("Elija una opción: "))
+        # Main menu
+        control = int(input("Choose an option: "))
 
         if control == 1:
             while control != 5:
-                #modificar dependiendo la necesidad y la cantidad de opciones 5 opciones 1 if 4 elif break
-                limpiarPantalla()
-                print("1- Ingresar Socio Nuevo\n2- Modificar Socios\n3- Ver Socios\n4- Baja de Socio\n5- Volver al Menú anterior")
-                control = int(input("Elija una opción: "))
+                # Modify depending on the need and the number of options (5 options, 1 if, 4 elif, break)
+                clearScreen()
+                print("1- Add New Member\n2- Modify Members\n3- View Members\n4- Remove Member\n5- Go back to Previous Menu")
+                control = int(input("Choose an option: "))
 
                 if control == 1:
-                    limpiarPantalla()
+                    clearScreen()
                 elif control == 2:
-                    limpiarPantalla()
+                    clearScreen()
                 elif control == 3:
-                    limpiarPantalla()
+                    clearScreen()
                 elif control == 4:
-                    limpiarPantalla()
+                    clearScreen()
                 elif control == 5:
-                    break  # Volver al menú anterior
+                    break  # Go back to the previous menu
 
         elif control == 2:
             while control != 3:
-                limpiarPantalla()
-                print("1- Alquilar Libro\n2- Devolver libro\n3- Volver al Menú anterior")
-                control = int(input("Elija una opción: "))
+                clearScreen()
+                print("1- Rent Book\n2- Return Book\n3- Go back to Previous Menu")
+                control = int(input("Choose an option: "))
 
                 if control == 1:
-                    limpiarPantalla()
+                    clearScreen()
                 elif control == 2:
-                    limpiarPantalla()
+                    clearScreen()
                 elif control == 3:
-                    break  # Volver al menú anterior
+                    break  # Go back to the previous menu
 
         elif control == 3:
-            print("Saliendo del sistema...")
-            time.sleep(1)  # Pausa para dar tiempo al usuario de leer el mensaje
+            print("Exiting the system...")
+            time.sleep(1)  # Pause to allow the user to read the message
 
 if __name__ == "__main__":
     main()

@@ -1,62 +1,63 @@
 import random
-#Esta funcion hace las tiradas random y determina el ganador de la tirada, devuelve 1 o 0 segun corresponda
-def tiradas(nombre1, nombre2):
-    opciones = {1: "Piedra", 2: "Tijera", 3: "Papel"}
 
-    input("Presione Enter para tirar la jugada")
+# This function makes the random throws and determines the winner of the throw, returns 1 or 0 as appropriate
+def throws(player1, player2):
+    options = {1: "Rock", 2: "Scissors", 3: "Paper"}
 
-    jugador1 = random.randint(1, 3)
-    jugador2 = random.randint(1, 3)
+    input("Press Enter to make your move")
 
-    print(f"{nombre1} sacó: {opciones[jugador1]}")
-    print(f"{nombre2} sacó: {opciones[jugador2]}")
+    player1_move = random.randint(1, 3)
+    player2_move = random.randint(1, 3)
 
-    if (jugador1 == 1 and jugador2 == 3) or (jugador1 == 2 and jugador2 == 1) or (jugador1 == 3 and jugador2 == 2):
-        print(f"{nombre1} gana esta ronda")
-        return 1, 0  # Punto para el jugador 1
-    elif (jugador2 == 1 and jugador1 == 3) or (jugador2 == 2 and jugador1 == 1) or (jugador2 == 3 and jugador1 == 2):
-        print(f"{nombre2} gana esta ronda")
-        return 0, 1  # Punto para el jugador 2
+    print(f"{player1} chose: {options[player1_move]}")
+    print(f"{player2} chose: {options[player2_move]}")
+
+    if (player1_move == 1 and player2_move == 3) or (player1_move == 2 and player2_move == 1) or (player1_move == 3 and player2_move == 2):
+        print(f"{player1} wins this round")
+        return 1, 0  # Point for player 1
+    elif (player2_move == 1 and player1_move == 3) or (player2_move == 2 and player1_move == 1) or (player2_move == 3 and player1_move == 2):
+        print(f"{player2} wins this round")
+        return 0, 1  # Point for player 2
     else:
-        print("¡Empate en esta ronda!")
-        return 0, 0  # Empate, nadie suma puntos
+        print("It's a tie this round!")
+        return 0, 0  # Tie, no points awarded
     
 
-# Pedir nombres de los jugadores
-jugador1 = input("Ingrese el nombre del 1º Jugador: ")
-jugador2 = input("Ingrese el nombre del 2º Jugador: ")
+# Ask for player names
+player1 = input("Enter the name of Player 1: ")
+player2 = input("Enter the name of Player 2: ")
 
-# Mostrar reglas
-print("\nREGLAS:")
-print("* Piedra vence a Tijera ")
-print("* Tijera vence a Papel ")
-print("* Papel vence a Piedra ")
-print("* Se juegan 10 rondas")
-print("* Quien gane más rondas, gana el juego")
-print("* En caso de empate, se jugará una ronda extra para el desempate")
+# Display rules
+print("\nRULES:")
+print("* Rock beats Scissors")
+print("* Scissors beats Paper")
+print("* Paper beats Rock")
+print("* 10 rounds are played")
+print("* Whoever wins the most rounds wins the game")
+print("* In case of a tie, an extra round will be played for a tiebreaker")
 
-# Jugar 10 rondas
-puntosJ1 = 0
-puntosJ2 = 0
+# Play 10 rounds
+pointsP1 = 0
+pointsP2 = 0
 
 for i in range(1, 11):
-    print(f"\n--- Tirada {i} ---")
-    p1, p2 = tiradas(jugador1, jugador2)
-    puntosJ1 += p1
-    puntosJ2 += p2
+    print(f"\n--- Throw {i} ---")
+    p1, p2 = throws(player1, player2)
+    pointsP1 += p1
+    pointsP2 += p2
 
-    # Si alguien ya tiene más de 5 victorias, se puede cortar el bucle
-    if puntosJ1 > 5 or puntosJ2 > 5:
+    # If someone already has more than 5 victories, the loop can be cut
+    if pointsP1 > 5 or pointsP2 > 5:
         break
 
-# En caso de empate, se juega UNA SOLA ronda extra
-if puntosJ1 == puntosJ2:
-    print("\n¡Empate! Se juega una ronda extra.")
-    p1, p2 = tiradas(jugador1, jugador2)
-    puntosJ1 += p1
-    puntosJ2 += p2
+# In case of a tie, ONE extra round is played
+if pointsP1 == pointsP2:
+    print("\nIt's a tie! Playing one extra round.")
+    p1, p2 = throws(player1, player2)
+    pointsP1 += p1
+    pointsP2 += p2
 
-# Mostrar resultado final
-ganador = jugador1 if puntosJ1 > puntosJ2 else jugador2
-#imprime el ganador y los puntos mas altos con la funcion max
-print(f"\n¡El ganador es {ganador} con {max(puntosJ1, puntosJ2)} puntos! ")
+# Display final result
+winner = player1 if pointsP1 > pointsP2 else player2
+# prints the winner and the highest points with the max function
+print(f"\nThe winner is {winner} with {max(pointsP1, pointsP2)} points!")
